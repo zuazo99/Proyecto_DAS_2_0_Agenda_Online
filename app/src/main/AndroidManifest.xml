@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_DAS_2_0_Agenda_Online">
         <activity
+            android:name=".MenuPrincipal"
+            android:exported="false" />
+        <activity
             android:name=".Register"
             android:exported="false" />
         <activity

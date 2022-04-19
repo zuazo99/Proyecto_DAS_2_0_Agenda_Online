@@ -19,7 +19,12 @@
     <string name="tituloActionBar">Registrar</string>
     <string name="tituloProgressDialog">Epere un momento, por favor</string>
     <string name="toastIngreseNombre">Ingrese nombre</string>
-    <string name="toastIngreseCorreo">Ingrese correo electronico</string>
+    <string name="toastIngreseCorreo">Ingrese correo electronico valido</string>
     <string name="toastIngreseContraseña">Ingrese Contraseña</string>
     <string name="toastIngreseConfirmeContraseña">Confirme Contraseña</string>
+    <string name="messageProgressDialog">Creando su cuenta...</string>
+    <string name="onFailure">""</string>
+    <string name="messageSaveProgressDialog">Guardando su informacion</string>
+    <string name="messageCuentaCreada">Cuenta creada con exito</string>
+    <string name="compararPassword">La Contraseña no coincide</string>
 </resources>
