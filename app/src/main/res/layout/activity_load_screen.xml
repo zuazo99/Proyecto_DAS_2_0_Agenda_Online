@@ -11,6 +11,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
+
+        <!--Animacion-->
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="200dp"
             android:layout_height="200dp"
@@ -22,6 +24,7 @@
             android:textSize="30sp"
             android:layout_marginTop="15dp"
             android:text="@string/app_name"
+            android:fontFamily="@font/opensansextrabold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />

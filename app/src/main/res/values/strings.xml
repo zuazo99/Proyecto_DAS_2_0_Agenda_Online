@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Agenda Online</string>
+
+    <!--MAIN ACTIVITY-->
+    <string name="btn_login">Login</string>
+    <string name="btn_registro">Registro</string>
+
+    <!--REGISTER ACTIVITY-->
+    <string name="CrearCuentaTXT">Crear una cuenta</string>
+    <string name="NombreET">Nombres</string>
+    <string name="CorreoET">Correo electronico</string>
+    <string name="ContraseñaET">Contraseña</string>
+    <string name="ConfirmarContraseñaET">Confirmar Contraseña</string>
+    <string name="RegistrarUsuario">Registrar</string>
+    <string name="TengoUnaCuentaTXT">Tengo una cuenta</string>
+
 </resources>

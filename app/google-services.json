@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "23730317056",
+    "project_id": "agenda-app-bd0ab",
+    "storage_bucket": "agenda-app-bd0ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23730317056:android:c630776e0a4cfc3d21b5e5",
+        "android_client_info": {
+          "package_name": "com.gzuazo.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23730317056-bljiuevv8e5f0hhuk7ov35fvoe3p6ngb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gzuazo.myapplication",
+            "certificate_hash": "cb3d039c243361186eac3895beaa9f77d914d05d"
+          }
+        },
+        {
+          "client_id": "23730317056-dl0u7l6mplaguq8nlduoca8jnup56k74.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA38eH9OpUB4nv424fJCr758H4TNKWBdmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23730317056-dl0u7l6mplaguq8nlduoca8jnup56k74.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
