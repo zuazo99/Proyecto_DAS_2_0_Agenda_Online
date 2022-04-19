@@ -5,7 +5,7 @@
     <string name="btn_login">Login</string>
     <string name="btn_registro">Registro</string>
 
-    <!--REGISTER ACTIVITY-->
+    <!--REGISTER.xml ACTIVITY-->
     <string name="CrearCuentaTXT">Crear una cuenta</string>
     <string name="NombreET">Nombres</string>
     <string name="CorreoET">Correo electronico</string>
@@ -14,4 +14,12 @@
     <string name="RegistrarUsuario">Registrar</string>
     <string name="TengoUnaCuentaTXT">Tengo una cuenta</string>
 
+
+    <!--REGISTER.java ACTIVITY-->
+    <string name="tituloActionBar">Registrar</string>
+    <string name="tituloProgressDialog">Epere un momento, por favor</string>
+    <string name="toastIngreseNombre">Ingrese nombre</string>
+    <string name="toastIngreseCorreo">Ingrese correo electronico</string>
+    <string name="toastIngreseContraseña">Ingrese Contraseña</string>
+    <string name="toastIngreseConfirmeContraseña">Confirme Contraseña</string>
 </resources>
