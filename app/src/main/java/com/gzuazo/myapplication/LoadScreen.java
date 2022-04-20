@@ -20,6 +20,8 @@ public class LoadScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_screen);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         int Tiempo = 3000;
         new Handler().postDelayed(new Runnable() {
             @Override

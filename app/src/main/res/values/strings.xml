@@ -27,4 +27,16 @@
     <string name="messageSaveProgressDialog">Guardando su informacion</string>
     <string name="messageCuentaCreada">Cuenta creada con exito</string>
     <string name="compararPassword">La Contraseña no coincide</string>
+
+
+    <!--MENU_PRINCIPAL-->
+    <string name="CerrarSesion">Cerrar Sesion</string>
+    <string name="salirApp">Cerraste sesion exitosamente</string>
+
+    <!--LOGIN-->
+    <string name="IniciarSesionTXT">Iniciar Sesion</string>
+    <string name="CorreoLogin">Correo</string>
+    <string name="LoginPass">Contraseña</string>
+    <string name="btn_logeo">Entrar</string>
+    <string name="UsuarioNuevoTXT">¿No tienes una cuenta? Registrate</string>
 </resources>
