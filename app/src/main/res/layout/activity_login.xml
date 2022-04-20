@@ -21,6 +21,74 @@
             android:textSize="25dp"
             android:gravity="center"/>
 
+        <!--Animacion-->
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:lottie_imageAssetsFolder="assets"
+            app:lottie_fileName="iniciar_sesion.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <EditText
+                android:id="@+id/CorreoLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/CorreoLogin"
+                android:drawableStart="@drawable/icono_correo"
+                android:drawablePadding="10dp"
+                android:padding="20dp"
+                android:fontFamily="@font/opensansmedium"
+                android:inputType="textEmailAddress"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:passwordToggleEnabled="true"
+            app:hintEnabled="false">
+
+            <EditText
+                android:id="@+id/LoginPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/LoginPass"
+                android:padding="20dp"
+                android:fontFamily="@font/opensansmedium"
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/icono_password"
+                android:drawablePadding="10dp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_logeo"
+            android:text="@string/btn_logeo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensansbold"
+            android:textSize="18dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/UsuarioNuevoTXT"
+            android:text="@string/UsuarioNuevoTXT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensansbold"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"/>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </RelativeLayout>
