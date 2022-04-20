@@ -32,7 +32,9 @@
     <!--MENU_PRINCIPAL-->
     <string name="CerrarSesion">Cerrar Sesion</string>
     <string name="salirApp">Cerraste sesion exitosamente</string>
-    <string name=""
+    <string name="BienvenidoPrincipal">Bienvenido(a)</string>
+    <string name="NombresPrincipal"> -- </string>
+    <string name="CorreoPrincipal"> -- </string>
 
     <!--LOGIN-->
     <string name="IniciarSesionTXT">Iniciar Sesion</string>
