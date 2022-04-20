@@ -32,6 +32,7 @@
     <!--MENU_PRINCIPAL-->
     <string name="CerrarSesion">Cerrar Sesion</string>
     <string name="salirApp">Cerraste sesion exitosamente</string>
+    <string name=""
 
     <!--LOGIN-->
     <string name="IniciarSesionTXT">Iniciar Sesion</string>
@@ -39,4 +40,8 @@
     <string name="LoginPass">Contraseña</string>
     <string name="btn_logeo">Entrar</string>
     <string name="UsuarioNuevoTXT">¿No tienes una cuenta? Registrate</string>
+    <string name="titleActionBarLogin">Login</string>
+    <string name="messageInicioSesionProgressDialog">Iniciando sesion...</string>
+    <string name="welcomeUserMessage">Bienvenido(a): </string>
+    <string name="loginFailure">Verifique si el correo y contraseña son correctos</string>
 </resources>
