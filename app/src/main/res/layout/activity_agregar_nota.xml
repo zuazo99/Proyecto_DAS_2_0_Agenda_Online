@@ -46,6 +46,7 @@
             android:textSize="20dp"
 
             android:fontFamily="@font/opensansbold"/>
+
         <!--Descripcion-->
         <EditText
             android:id="@+id/Descripcion"
@@ -63,6 +64,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
 
+            <!--Abrir calendario-->
             <Button
                 android:id="@+id/btn_Calendario"
                 android:layout_width="wrap_content"
@@ -70,7 +72,26 @@
                 android:text="@string/btn_Calendario"
                 app:icon="@drawable/icono_calendario"/>
 
+            <!--Visualizar fecha elegida-->
+            <TextView
+                android:id="@+id/Fecha"
+                android:hint="@string/Fecha"
+                android:textSize="20dp"
+                android:fontFamily="@font/opensanslight"
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/Estado"
+            android:hint="@string/Estado"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/opensanslight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
