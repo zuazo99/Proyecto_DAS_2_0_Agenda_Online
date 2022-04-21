@@ -35,6 +35,7 @@
     <string name="BienvenidoPrincipal">Bienvenido(a)</string>
     <string name="NombresPrincipal"> -- </string>
     <string name="CorreoPrincipal"> -- </string>
+    <string name="IDPrincipal"> -- </string>
     <string name="tituloMenuPrincipalActionBar">Agenda Online</string>
 
     <string name="AgregarNota">Agregar</string>
@@ -53,4 +54,15 @@
     <string name="messageInicioSesionProgressDialog">Iniciando sesion...</string>
     <string name="welcomeUserMessage">Bienvenido(a): </string>
     <string name="loginFailure">Verifique si el correo y contraseña son correctos</string>
+
+
+    <!--AGREGAR NOTA-->
+    <string name="Uid_Usuario">ID Usuario</string>
+    <string name="Correo_Usuario">Correo de Usuario</string>
+    <string name="Fecha_Hora_Actual">Fecha y hora actual</string>
+    <string name="Titulo_Nota">Titulo </string>
+    <string name="Descripcion">Descripcion</string>
+    <string name="btn_Calendario">Calendario</string>
+    <string name="Fecha"> 00/00/0000 </string>
+    <string name="Estado"> No finalizado</string>
 </resources>

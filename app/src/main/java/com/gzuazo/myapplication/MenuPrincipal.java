@@ -19,11 +19,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.gzuazo.myapplication.AgregarNota.AgregarNota;
+import com.gzuazo.myapplication.ListarNotas.ListarNotas;
+import com.gzuazo.myapplication.NotasArchivadas.NotasArchivadas;
+import com.gzuazo.myapplication.Perfil.Perfil_Usuario;
 
 public class MenuPrincipal extends AppCompatActivity {
 
-    TextView nombresPrincipal, correoPrincipal;
-    Button btnCerrarSesion;
+    TextView nombresPrincipal, correoPrincipal, idPrincipal;
+    Button btnCerrarSesion, btnAgregarNota, btnMisNotas, btnArchivar, btnPerfil, btnAcercaDe;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     ProgressBar progressBarDatos;
@@ -43,6 +47,41 @@ public class MenuPrincipal extends AppCompatActivity {
         usuarios = FirebaseDatabase.getInstance().getReference("Usuarios");
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+
+
+        btnAgregarNota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuPrincipal.this, AgregarNota.class));
+            }
+        });
+        btnMisNotas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuPrincipal.this, ListarNotas.class));
+            }
+        });
+
+        btnArchivar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuPrincipal.this, NotasArchivadas.class));
+            }
+        });
+
+        btnPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
+            }
+        });
+
+        btnAcercaDe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MenuPrincipal.this, "Acerca De", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,17 +117,30 @@ public class MenuPrincipal extends AppCompatActivity {
                     // progressBar se oculta
                     progressBarDatos.setVisibility(View.GONE);
                     // textviews se ven
+                    idPrincipal.setVisibility(View.VISIBLE);
                     nombresPrincipal.setVisibility(View.VISIBLE);
                     correoPrincipal.setVisibility(View.VISIBLE);
 
                     // Obtener datos
-
+                    String uid = "" + snapshot.child("uid").getValue();
                     String nombres = ""+ snapshot.child("nombre").getValue();
                     String correo = ""+ snapshot.child("correo").getValue();
 
                     // settear datos en los textViews
+                    idPrincipal.setText(uid);
                     nombresPrincipal.setText(nombres);
                     correoPrincipal.setText(correo);
+
+
+                    // Habilitar botones de opciones
+
+                    btnAgregarNota.setEnabled(true);
+                    btnMisNotas.setEnabled(true);
+                    btnArchivar.setEnabled(true);
+                    btnPerfil.setEnabled(true);
+                    btnAcercaDe.setEnabled(true);
+                    btnCerrarSesion.setEnabled(true);
+
                 }
             }
 
@@ -109,7 +161,13 @@ public class MenuPrincipal extends AppCompatActivity {
     private void inicializarViews(){
         nombresPrincipal = findViewById(R.id.NombresPrincipal);
         correoPrincipal = findViewById(R.id.CorreoPrincipal);
+        idPrincipal = findViewById(R.id.IDPrincipal);
         btnCerrarSesion = findViewById(R.id.CerrarSesion);
+        btnAcercaDe = findViewById(R.id.AcercaDe);
+        btnAgregarNota = findViewById(R.id.AgregarNota);
+        btnArchivar = findViewById(R.id.ArchivarNotas);
+        btnMisNotas = findViewById(R.id.ListarNotas);
+        btnPerfil = findViewById(R.id.Perfil);
         progressBarDatos = findViewById(R.id.progressBarDatos);
     }
 }
