@@ -35,6 +35,7 @@
     <string name="BienvenidoPrincipal">Bienvenido(a)</string>
     <string name="NombresPrincipal"> -- </string>
     <string name="CorreoPrincipal"> -- </string>
+    <string name="tituloMenuPrincipalActionBar">Agenda Online</string>
 
     <!--LOGIN-->
     <string name="IniciarSesionTXT">Iniciar Sesion</string>
