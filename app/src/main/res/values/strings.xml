@@ -81,5 +81,8 @@
     <string name="Fecha_Item"> 00/00/0000 </string>
     <string name="Estado_Item"> No finalizado</string>
 
+    <!--ListarNotas-->
+    <string name="tituloActionBarListarNotas">Mis notas</string>
+
 
 </resources>
