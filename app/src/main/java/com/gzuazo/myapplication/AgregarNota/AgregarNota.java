@@ -1,5 +1,6 @@
 package com.gzuazo.myapplication.AgregarNota;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -20,8 +21,17 @@ public class AgregarNota extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_nota);
 
+
+        //ActionBar para que el usuario pueda volver atras, mediante una flecha
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("");
+        // Estos dos metodos crean la flecha
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+
         inicializarViews();
-        getDatosUsuario()
+        getDatosUsuario();
     }
 
     private void inicializarViews() {
@@ -41,5 +51,11 @@ public class AgregarNota extends AppCompatActivity {
 
         id_Usuario.setText(uid_usuario);
         correo_Usuario.setText(correo);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed(); // Permitira al usuario ir a la actividad anterior cuando presione en la flecha creada en el actionBar
+        return super.onSupportNavigateUp();
     }
 }
