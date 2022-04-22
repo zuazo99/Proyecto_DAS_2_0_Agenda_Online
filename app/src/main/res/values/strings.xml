@@ -71,4 +71,15 @@
     <!--MENU ACTIONBAR-->
     <string name="AgregarNota_BD">Añadir</string>
 
+    <!--ITEM Nota-->
+    <string name="Id_Nota_Item">Id nota</string>
+    <string name="Uid_Usuario_Item">ID Usuario</string>
+    <string name="Correo_Usuario_Item">Correo de Usuario</string>
+    <string name="Fecha_Hora_registro_Item">Fecha y hora registrada</string>
+    <string name="Titulo_Nota_Item">Titulo </string>
+    <string name="Descripcion_Item">Descripcion</string>
+    <string name="Fecha_Item"> 00/00/0000 </string>
+    <string name="Estado_Item"> No finalizado</string>
+
+
 </resources>
