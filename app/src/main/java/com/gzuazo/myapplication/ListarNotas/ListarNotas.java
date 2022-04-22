@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +43,9 @@ public class ListarNotas extends AppCompatActivity {
 
     Dialog dialog;
 
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +61,9 @@ public class ListarNotas extends AppCompatActivity {
         mRecycler = findViewById(R.id.recyclerviewNotas);
         mRecycler.setHasFixedSize(true);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         database = firebaseDatabase.getReference("Notas_Publicadas");
         dialog = new Dialog(ListarNotas.this);
@@ -64,7 +72,14 @@ public class ListarNotas extends AppCompatActivity {
     }
 
     private void listNotesOfUsers(){
-        options = new FirebaseRecyclerOptions.Builder<Nota>().setQuery(database, Nota.class).build();
+
+        //consulta
+        /*
+            Si el uid de la nota registrada es igual al uid del usuario que actualmente a iniciado sesion,
+            entonces se listan. De esta manera solo se visualizaran las notas que le pertenezcan al usuario
+         */
+        Query query = database.orderByChild("uid_usuario").equalTo(user.getUid());
+        options = new FirebaseRecyclerOptions.Builder<Nota>().setQuery(query, Nota.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Nota, ViewHolder_nota>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ViewHolder_nota viewHolder_nota, int position, @NonNull Nota nota) {
