@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +18,12 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.gzuazo.myapplication.R;
 import com.gzuazo.myapplication.adapter.ViewHolder_nota;
 import com.gzuazo.myapplication.models.Nota;
@@ -84,6 +90,8 @@ public class ListarNotas extends AppCompatActivity {
                     @Override
                     public void onItemLongClick(View view, int position) {
 
+                        String idNota = getItem(position).getId_nota();
+
                         //Toast.makeText(ListarNotas.this, "OnItemLongClick", Toast.LENGTH_SHORT).show();
 
                         //Declarar las vistas del dialog
@@ -99,7 +107,8 @@ public class ListarNotas extends AppCompatActivity {
                         btn_Eliminar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(ListarNotas.this, "Nota eliminada", Toast.LENGTH_SHORT).show();
+                                eliminarNota(idNota);
+                                dialog.dismiss();
                             }
                         });
 
@@ -107,6 +116,7 @@ public class ListarNotas extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
                                 Toast.makeText(ListarNotas.this, "Actualizar nota", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
                             }
                         });
 
@@ -124,6 +134,45 @@ public class ListarNotas extends AppCompatActivity {
 
         mRecycler.setLayoutManager(linearLayoutManager);
         mRecycler.setAdapter(firebaseRecyclerAdapter);
+    }
+
+    private void eliminarNota(String idNota) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ListarNotas.this);
+        builder.setTitle(R.string.alertDialogTitleEliminar);
+        builder.setMessage(R.string.alertDialogMessageEliminar);
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Eliminar nota de database
+                //  orderByChild --> nos ayuda a comprobar en la base de datos si un dato existe
+                Query query = database.orderByChild("id_nota").equalTo(idNota);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        // Recorrer las notas registradas por los usuarios y se acabara el for cuando encuentre un idNota igual
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            ds.getRef().removeValue();
+                        }
+
+                        Toast.makeText(ListarNotas.this, getString(R.string.notaEliminadaAlertDialog), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(ListarNotas.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(ListarNotas.this, getString(R.string.alertDialogBorrarcancelado), Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.create().show();
     }
 
     @Override

@@ -29,17 +29,21 @@
     <Button
         android:id="@+id/CD_Eliminar"
         android:text="@string/CD_Eliminar"
-        android:layout_width="match_parent"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        app:icon="@drawable/icono_eliminar_cd"
+        android:layout_gravity="center"
         android:fontFamily="@font/opensansmedium"/>
 
     <Button
         android:id="@+id/CD_Actualizar"
         android:text="@string/CD_Actualizar"
-        android:layout_width="match_parent"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
+        app:icon="@drawable/icono_actualizar_cd"
         android:layout_marginTop="10dp"
+        android:layout_gravity="center"
         android:fontFamily="@font/opensansmedium"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
