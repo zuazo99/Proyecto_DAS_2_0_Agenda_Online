@@ -84,5 +84,11 @@
     <!--ListarNotas-->
     <string name="tituloActionBarListarNotas">Mis notas</string>
 
+    <!--CUADRO DIALOGO OPCIONES -->
+    <string name="ElijaOpcionTXT">Elija una opcion</string>
+    <string name="CD_Eliminar">Eliminar</string>
+    <string name="CD_Actualizar">Actualizar</string>
+
+
 
 </resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ElijaOpcionTXT"
+        android:textSize="28dp"
+        android:fontFamily="@font/opensansbold"
+        android:gravity="center"/>
+
+    <!--Animacion-->
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:lottie_imageAssetsFolder="assets"
+        app:lottie_fileName="seleccionar.json"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/CD_Eliminar"
+        android:text="@string/CD_Eliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/opensansmedium"/>
+
+    <Button
+        android:id="@+id/CD_Actualizar"
+        android:text="@string/CD_Actualizar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/opensansmedium"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

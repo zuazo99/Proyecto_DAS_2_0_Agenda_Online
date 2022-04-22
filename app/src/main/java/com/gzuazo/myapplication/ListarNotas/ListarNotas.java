@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -31,6 +33,8 @@ public class ListarNotas extends AppCompatActivity {
     FirebaseRecyclerAdapter<Nota, ViewHolder_nota> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Nota> options;
 
+    Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,7 @@ public class ListarNotas extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         database = firebaseDatabase.getReference("Notas_Publicadas");
+        dialog = new Dialog(ListarNotas.this);
         listNotesOfUsers();
 
     }
@@ -78,7 +83,35 @@ public class ListarNotas extends AppCompatActivity {
 
                     @Override
                     public void onItemLongClick(View view, int position) {
-                        Toast.makeText(ListarNotas.this, "OnItemLongClick", Toast.LENGTH_SHORT).show();
+
+                        //Toast.makeText(ListarNotas.this, "OnItemLongClick", Toast.LENGTH_SHORT).show();
+
+                        //Declarar las vistas del dialog
+                        Button btn_Eliminar, btn_Actualizar;
+
+                        //Realizar conexion con el dise;o
+                        dialog.setContentView(R.layout.dialogo_opciones);
+
+                        //Inicializar las vistas
+                        btn_Eliminar = dialog.findViewById(R.id.CD_Eliminar);
+                        btn_Actualizar = dialog.findViewById(R.id.CD_Actualizar);
+
+                        btn_Eliminar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(ListarNotas.this, "Nota eliminada", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        btn_Actualizar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(ListarNotas.this, "Actualizar nota", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        dialog.show();
+
                     }
                 });
                 return viewHolder_nota;
