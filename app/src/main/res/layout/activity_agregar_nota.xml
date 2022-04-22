@@ -84,6 +84,7 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <!--Estado de la nota-->
         <TextView
             android:id="@+id/Estado"
             android:hint="@string/Estado"

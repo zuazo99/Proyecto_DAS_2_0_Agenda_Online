@@ -52,7 +52,13 @@ public class MenuPrincipal extends AppCompatActivity {
         btnAgregarNota.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuPrincipal.this, AgregarNota.class));
+
+                String uid_usuario = idPrincipal.getText().toString(), correo_usuario = correoPrincipal.getText().toString();
+                Intent intent = new Intent(MenuPrincipal.this, AgregarNota.class);
+                intent.putExtra("uid", uid_usuario);
+                intent.putExtra("correo", correo_usuario);
+                startActivity(intent);
+
             }
         });
         btnMisNotas.setOnClickListener(new View.OnClickListener() {
