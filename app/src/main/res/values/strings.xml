@@ -65,7 +65,10 @@
     <string name="btn_Calendario">Calendario</string>
     <string name="Fecha"> 00/00/0000 </string>
     <string name="Estado"> No finalizado</string>
+    <string name="validarDatosError">Rellenar todos los campos</string>
+    <string name="agregarNotaExito">Nota agregada con exito</string>
 
     <!--MENU ACTIONBAR-->
     <string name="AgregarNota_BD">Añadir</string>
+
 </resources>

@@ -16,7 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.gzuazo.myapplication.R;
+import com.gzuazo.myapplication.models.Nota;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -31,6 +34,9 @@ public class AgregarNota extends AppCompatActivity {
 
     int dia, mes, anio;
 
+    DatabaseReference firebaseDB;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,7 @@ public class AgregarNota extends AppCompatActivity {
 
         inicializarActionBar();
         inicializarViews();
+        firebaseDB();
         getDatosUsuario();
         getFechaHoraActual();
 
@@ -102,6 +109,10 @@ public class AgregarNota extends AppCompatActivity {
         estado = findViewById(R.id.Estado);
     }
 
+    private void firebaseDB() {
+        firebaseDB = FirebaseDatabase.getInstance().getReference();
+    }
+
     private void getDatosUsuario(){
         String uid_usuario = getIntent().getStringExtra("uid");
         String correo = getIntent().getStringExtra("correo");
@@ -113,6 +124,43 @@ public class AgregarNota extends AppCompatActivity {
     private void getFechaHoraActual(){
         String fechaHora = new SimpleDateFormat("dd-MM-YYYY/HH:mm:ss", Locale.getDefault()).format(System.currentTimeMillis());
         fechaHoraActual.setText(fechaHora);
+    }
+
+    private void addNota() {
+        // Obtener los datos
+        String uid_usuario = id_Usuario.getText().toString();
+        String correo = correo_Usuario.getText().toString();
+        String fecha_Hora_Actual = fechaHoraActual.getText().toString();
+        String titleNota = tituloNota.getText().toString();
+        String Descripcion = descripcion.getText().toString();
+        String fechaNota = fecha.getText().toString();
+        String Estado = estado.getText().toString();
+
+        // Validar Datos
+
+        //Validar datos
+        if (!uid_usuario.equals("") && !correo.equals("") && !fecha_Hora_Actual.equals("") &&
+                !titleNota.equals("") && !Descripcion.equals("") && ! fechaNota.equals("") && !Estado.equals("")){
+
+            Nota nota = new Nota(correo+"/"+fecha_Hora_Actual, uid_usuario, correo, fecha_Hora_Actual,
+                    titleNota, Descripcion, fechaNota, Estado);
+            /*
+                push() --> Crea un registro en blanco en la base de datos, y devuelve la referencia del registro
+                getKey() --> Para obtener esa referencia
+             */
+
+            String nota_Usuario = firebaseDB.push().getKey();
+            // Establecer nombre de la BD
+            String NOMBRE_DB = "Notas_Publicadas";
+
+            //1.child(NOMBRE_DB) --> Establecemos que la BD "Notas_Publicadas estara dentro de la base de datos general(Padre)"
+            firebaseDB.child(NOMBRE_DB).child(nota_Usuario).setValue(nota);
+            Toast.makeText(this, getString(R.string.agregarNotaExito), Toast.LENGTH_SHORT).show();
+            onBackPressed(); // Para que despues de agregar una nota nos redirija automaticamente al menu principal
+
+        }else {
+            Toast.makeText(this, getString(R.string.validarDatosError), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -127,7 +175,7 @@ public class AgregarNota extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.AgregarNota_BD:
-                Toast.makeText(this, "Se ha guardado con exito", Toast.LENGTH_SHORT).show();
+                addNota();
                 break;
         }
 
