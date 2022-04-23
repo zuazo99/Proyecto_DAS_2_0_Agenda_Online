@@ -3,6 +3,7 @@ package com.gzuazo.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class MenuPrincipal extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     ProgressBar progressBarDatos;
+    LinearLayoutCompat linearNombres, linearCorreo;
 
     DatabaseReference usuarios; // Para leer o escribir en la base de datos
 
@@ -123,9 +125,11 @@ public class MenuPrincipal extends AppCompatActivity {
                     // progressBar se oculta
                     progressBarDatos.setVisibility(View.GONE);
                     // textviews se ven
-                    idPrincipal.setVisibility(View.VISIBLE);
-                    nombresPrincipal.setVisibility(View.VISIBLE);
-                    correoPrincipal.setVisibility(View.VISIBLE);
+                    //idPrincipal.setVisibility(View.VISIBLE);
+//                    nombresPrincipal.setVisibility(View.VISIBLE);
+//                    correoPrincipal.setVisibility(View.VISIBLE);
+                    linearNombres.setVisibility(View.VISIBLE);
+                    linearCorreo.setVisibility(View.VISIBLE);
 
                     // Obtener datos
                     String uid = "" + snapshot.child("uid").getValue();
@@ -175,5 +179,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnMisNotas = findViewById(R.id.ListarNotas);
         btnPerfil = findViewById(R.id.Perfil);
         progressBarDatos = findViewById(R.id.progressBarDatos);
+        linearNombres = findViewById(R.id.Linear_Nombre);
+        linearCorreo = findViewById(R.id.Linear_Correo);
     }
 }

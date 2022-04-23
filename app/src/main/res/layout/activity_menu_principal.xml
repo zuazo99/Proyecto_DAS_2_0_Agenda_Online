@@ -15,7 +15,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="135dp"
+            android:layout_height="130dp"
             app:cardBackgroundColor="@color/purple_200"
             app:cardUseCompatPadding="true"
             android:padding="0.2dp"
@@ -24,58 +24,116 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:orientation="horizontal"
+                android:weightSum="4">
 
-                <TextView
-                    android:text="@string/BienvenidoPrincipal"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="2dp"
+                    android:src="@drawable/imagen_perfil"/>
+
+                <!--DATOS-->
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#FFF"
-                    android:fontFamily="@font/opensansbold"
-                    android:textSize="20dp"/>
+                    android:orientation="vertical"
+                    android:layout_weight="3"
+                    android:padding="10dp">
 
-                <!--El progressBarDatos se visualizara hasta que se carguen los datos-->
-                <ProgressBar
-                    android:id="@+id/progressBarDatos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"/>
 
-                <!--ID-->
-                <TextView
-                    android:id="@+id/IDPrincipal"
-                    android:text="@string/IDPrincipal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FFF"
-                    android:fontFamily="@font/opensanslight"
-                    android:textSize="18dp"
-                    android:visibility="gone"/>
+                    <TextView
+                        android:text="@string/BienvenidoPrincipal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFF"
+                        android:fontFamily="@font/opensansbold"
+                        android:textSize="20dp"/>
 
-                <!--NOMBRES-->
-                <TextView
-                    android:id="@+id/NombresPrincipal"
-                    android:text="@string/NombresPrincipal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FFF"
-                    android:fontFamily="@font/opensansbold"
-                    android:textSize="20dp"
-                    android:visibility="gone"/>
-                <!--Correo-->
-                <TextView
-                    android:id="@+id/CorreoPrincipal"
-                    android:text="@string/CorreoPrincipal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#FFF"
-                    android:fontFamily="@font/opensansbold"
-                    android:textSize="20dp"
-                    android:visibility="gone"/>
+                    <!--El progressBarDatos se visualizara hasta que se carguen los datos-->
+                    <ProgressBar
+                        android:id="@+id/progressBarDatos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"/>
+
+                    <!--ID-->
+                    <TextView
+                        android:id="@+id/IDPrincipal"
+                        android:text="@string/IDPrincipal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFF"
+                        android:fontFamily="@font/opensanslight"
+                        android:textSize="18dp"
+                        android:visibility="gone"/>
+
+                    <!--Nombre y Icono-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/Linear_Nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <!--ICONO-->
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/nombre_menu_principal"
+                            android:layout_gravity="center"/>
+
+                        <!--NOMBRES-->
+                        <TextView
+                            android:id="@+id/NombresPrincipal"
+                            android:text="@string/NombresPrincipal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#FFF"
+                            android:fontFamily="@font/opensansbold"
+                            android:textSize="17dp"
+                            android:layout_marginStart="3dp"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <!--CORREO y ICONO-->
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/Linear_Correo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <!--ICONO-->
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/correo_menu_principal"
+                            android:layout_gravity="center"/>
+
+                        <!--Correo-->
+                        <TextView
+                            android:id="@+id/CorreoPrincipal"
+                            android:text="@string/CorreoPrincipal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#FFF"
+                            android:fontFamily="@font/opensansbold"
+                            android:textSize="17dp"
+                            android:layout_marginStart="3dp"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
 
         </androidx.cardview.widget.CardView>
