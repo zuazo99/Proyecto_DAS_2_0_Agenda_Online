@@ -18,7 +18,8 @@
             android:fontFamily="@font/opensanssemibold"
             android:hint="@string/Uid_Usuario"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
         <!--Correo del Usuario-->
         <TextView
             android:id="@+id/Correo_Usuario"
@@ -26,16 +27,41 @@
             android:fontFamily="@font/opensanssemibold"
             android:hint="@string/Correo_Usuario"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+        <!-- ICONO-TEXTVIEW-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/fecha_hora_agregar_nota"/>
+
+            <!--Fecha_Hora_ARegistro-->
+            <TextView
+                android:id="@+id/Fecha_Hora_Actual_TXT"
+                android:textSize="20dp"
+                android:fontFamily="@font/opensansbold"
+                android:hint="@string/Fecha_Hora_Actual_TXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <!--Fecha_Hora_Actual-->
         <TextView
             android:id="@+id/Fecha_Hora_Actual"
             android:textSize="18dp"
-            android:fontFamily="@font/opensanssemibold"
+            android:layout_gravity="center"
+            android:fontFamily="@font/opensansbold"
+            android:layout_marginTop="5dp"
             android:hint="@string/Fecha_Hora_Actual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
         <!--Titulo-->
         <EditText
             android:id="@+id/Titulo_Nota"

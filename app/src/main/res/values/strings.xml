@@ -59,6 +59,7 @@
     <!--AGREGAR NOTA-->
     <string name="Uid_Usuario">ID Usuario</string>
     <string name="Correo_Usuario">Correo de Usuario</string>
+    <string name="Fecha_Hora_Actual_TXT">Fecha de registro</string>
     <string name="Fecha_Hora_Actual">Fecha y hora actual</string>
     <string name="Titulo_Nota">Titulo </string>
     <string name="Descripcion">Descripcion</string>
