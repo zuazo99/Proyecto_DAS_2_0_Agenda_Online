@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.gzuazo.myapplication.ActualizarNota.Actualizar_Nota;
 import com.gzuazo.myapplication.R;
 import com.gzuazo.myapplication.adapter.ViewHolder_nota;
 import com.gzuazo.myapplication.models.Nota;
@@ -105,7 +107,15 @@ public class ListarNotas extends AppCompatActivity {
                     @Override
                     public void onItemLongClick(View view, int position) {
 
-                        String idNota = getItem(position).getId_nota();
+                        // Obtener los datos de la nota
+                        String id_Nota = getItem(position).getId_nota();
+                        String uid_usuario = getItem(position).getUid_usuario();
+                        String correo_usuario = getItem(position).getCorreo_usuario();
+                        String fecha_registrada = getItem(position).getFechaHoraActual();
+                        String tituloNota = getItem(position).getTituloNota();
+                        String descripcion = getItem(position).getDescripcion();
+                        String fechaNota = getItem(position).getFechaNota();
+                        String estado = getItem(position).getEstado();
 
                         //Toast.makeText(ListarNotas.this, "OnItemLongClick", Toast.LENGTH_SHORT).show();
 
@@ -122,7 +132,7 @@ public class ListarNotas extends AppCompatActivity {
                         btn_Eliminar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                eliminarNota(idNota);
+                                eliminarNota(id_Nota);
                                 dialog.dismiss();
                             }
                         });
@@ -130,7 +140,18 @@ public class ListarNotas extends AppCompatActivity {
                         btn_Actualizar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Toast.makeText(ListarNotas.this, "Actualizar nota", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(ListarNotas.this, "Actualizar nota", Toast.LENGTH_SHORT).show();
+                               //
+                                Intent intent = new Intent(ListarNotas.this,Actualizar_Nota.class);
+                                intent.putExtra("id_Nota", id_Nota);
+                                intent.putExtra("uid_usuario", uid_usuario);
+                                intent.putExtra("correo_usuario", correo_usuario);
+                                intent.putExtra("fecha_registrada", fecha_registrada);
+                                intent.putExtra("tituloNota", tituloNota);
+                                intent.putExtra("descripcion", descripcion);
+                                intent.putExtra("fechaNota", fechaNota);
+                                intent.putExtra("estado", estado);
+                                startActivity(intent);
                                 dialog.dismiss();
                             }
                         });

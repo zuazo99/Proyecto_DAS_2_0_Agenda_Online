@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActualizarNota.Actualizar_Nota">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!--ID de Nota-->
+        <TextView
+            android:id="@+id/Id_nota_Actualizar"
+            android:textSize="18dp"
+            android:fontFamily="@font/opensanssemibold"
+            android:hint="@string/Id_nota_Actualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--ID del USUARIO-->
+        <TextView
+            android:id="@+id/Uid_Usuario_Actualizar"
+            android:textSize="18dp"
+            android:fontFamily="@font/opensanssemibold"
+            android:hint="@string/Uid_Usuario_Actualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <!--Correo del Usuario-->
+        <TextView
+            android:id="@+id/Correo_Usuario_Actualizar"
+            android:textSize="18dp"
+            android:fontFamily="@font/opensanssemibold"
+            android:hint="@string/Correo_Usuario_Actualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <!--Fecha_Hora de registro-->
+        <TextView
+            android:id="@+id/Fecha_Hora_registro_Actualizar"
+            android:textSize="18dp"
+            android:fontFamily="@font/opensanssemibold"
+            android:hint="@string/Fecha_Hora_registro_Actualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <!-- Estado Nota-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/Tarea_Finalizada"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="#16A085"
+                android:visibility="gone"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/Tarea_No_Finalizada"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="#E74C3C"
+                android:layout_marginStart="5dp"
+                android:visibility="gone"/>
+
+            <!--Estado de la nota-->
+            <TextView
+                android:id="@+id/Estado_Actualizar"
+                android:text="@string/Estado_Actualizar"
+                android:layout_marginStart="5dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/opensanslight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!--Titulo-->
+        <EditText
+            android:id="@+id/Titulo_Nota_Actualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Titulo_Nota_Actualizar"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:fontFamily="@font/opensansbold"/>
+
+        <!--Descripcion-->
+        <EditText
+            android:id="@+id/Descripcion_Actualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Descripcion_Actualizar"
+            android:minHeight="150dp"
+            android:gravity="start"
+            android:textSize="25dp"
+            android:fontFamily="@font/opensanssemibold"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <!--Abrir calendario-->
+            <Button
+                android:id="@+id/btn_Calendario_Actualizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_Calendario_Actualizar"
+                app:icon="@drawable/icono_calendario"/>
+
+            <!--Visualizar fecha elegida-->
+            <TextView
+                android:id="@+id/Fecha_Actualizar"
+                android:hint="@string/Fecha_Actualizar"
+                android:textSize="20dp"
+                android:fontFamily="@font/opensanslight"
+                android:layout_marginStart="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <Spinner
+                android:id="@+id/Spinner_estado"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/Estado_Nuevo"
+                android:text="@string/Estado_Nuevo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>
