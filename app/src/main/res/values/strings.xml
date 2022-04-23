@@ -70,6 +70,7 @@
 
     <!--MENU ACTIONBAR-->
     <string name="AgregarNota_BD">Añadir</string>
+    <string name="ActualizarNota_BD">Actualizar</string>
 
     <!--ITEM Nota-->
     <string name="Id_Nota_Item">Id nota</string>
@@ -94,6 +95,7 @@
     <string name="alertDialogBorrarcancelado">Cancelado el borrado de la nota</string>
 
     <!--Actualizar Nota-->
+    <string name="actionBarTitleActualizar">Actualizar Nota</string>
     <string name="Id_nota_Actualizar">Id nota</string>
     <string name="Uid_Usuario_Actualizar">ID Usuario</string>
     <string name="Correo_Usuario_Actualizar">Correo de Usuario</string>
@@ -104,11 +106,12 @@
     <string name="Fecha_Actualizar"> 00/00/0000 </string>
     <string name="Estado_Actualizar"> No finalizado</string>
     <string name="Estado_Nuevo"> -- </string>
+    <string name="notaActualizadaExito">Nota actualizada con exito</string>
 
     <!--SPINNER-->
     <string-array name="Estados_Nota">
+        <item>"No Finalizado"</item>
         <item>"Finalizado"</item>
-        <item>"No finalizado"</item>
     </string-array>
 
 

@@ -17,6 +17,7 @@
             android:id="@+id/Id_nota_Actualizar"
             android:textSize="18dp"
             android:fontFamily="@font/opensanssemibold"
+            android:visibility="gone"
             android:hint="@string/Id_nota_Actualizar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -27,6 +28,7 @@
             android:textSize="18dp"
             android:fontFamily="@font/opensanssemibold"
             android:hint="@string/Uid_Usuario_Actualizar"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <!--Correo del Usuario-->
@@ -35,12 +37,14 @@
             android:textSize="18dp"
             android:fontFamily="@font/opensanssemibold"
             android:hint="@string/Correo_Usuario_Actualizar"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <!--Fecha_Hora de registro-->
         <TextView
             android:id="@+id/Fecha_Hora_registro_Actualizar"
             android:textSize="18dp"
+            android:visibility="gone"
             android:fontFamily="@font/opensanssemibold"
             android:hint="@string/Fecha_Hora_registro_Actualizar"
             android:layout_width="wrap_content"
