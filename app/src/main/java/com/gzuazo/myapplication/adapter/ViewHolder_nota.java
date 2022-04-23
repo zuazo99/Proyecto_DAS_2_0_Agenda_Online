@@ -2,6 +2,7 @@ package com.gzuazo.myapplication.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,6 +52,8 @@ public class ViewHolder_nota extends RecyclerView.ViewHolder{
         TextView Id_Nota_Item, Uid_Usuario_Item, Correo_Usuario_Item,
                 Fecha_Hora_registro_Item, Titulo_Nota_Item, Descripcion_Item, Fecha_Item, Estado_Item;
 
+        ImageView Tarea_Finalizada_Item, Tarea_No_Finalizada_Item;
+
         // conexion con el item
         Id_Nota_Item = mView.findViewById(R.id.Id_Nota_Item);
         Uid_Usuario_Item = mView.findViewById(R.id.Uid_Usuario_Item);
@@ -60,6 +63,9 @@ public class ViewHolder_nota extends RecyclerView.ViewHolder{
         Descripcion_Item = mView.findViewById(R.id.Descripcion_Item);
         Fecha_Item = mView.findViewById(R.id.Fecha_Item);
         Estado_Item = mView.findViewById(R.id.Estado_Item);
+
+        Tarea_Finalizada_Item = mView.findViewById(R.id.Tarea_Finalizada_Item);
+        Tarea_No_Finalizada_Item = mView.findViewById(R.id.Tarea_No_Finalizada_Item);
 
         //settear los datos
 
@@ -71,5 +77,13 @@ public class ViewHolder_nota extends RecyclerView.ViewHolder{
         Descripcion_Item.setText(descripcion);
         Fecha_Item.setText(fechaNota);
         Estado_Item.setText(estado);
+
+        // Gestionamos color de estado
+
+        if (estado.equals("Finalizado")){
+            Tarea_Finalizada_Item.setVisibility(View.VISIBLE);
+        }else {
+            Tarea_No_Finalizada_Item.setVisibility(View.VISIBLE);
+        }
     }
 }

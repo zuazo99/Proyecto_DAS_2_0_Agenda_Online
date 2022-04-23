@@ -85,27 +85,57 @@
                 android:id="@+id/Descripcion_Item"
                 android:text="@string/Descripcion_Item"
                 android:textSize="18sp"
-                android:fontFamily="@font/opensansbold"
+                android:fontFamily="@font/opensansmedium"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="50dp"/>
 
             <!--Fecha de la nota-->
             <TextView
                 android:id="@+id/Fecha_Item"
                 android:text="@string/Fecha_Item"
                 android:textSize="18sp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/opensansbold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <!--Estado de la nota-->
-            <TextView
-                android:id="@+id/Estado_Item"
-                android:text="@string/Estado_Item"
-                android:visibility="gone"
-                android:fontFamily="@font/opensansbold"
+            <!-- Estado Nota-->
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/Tarea_Finalizada_Item"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="#16A085"
+                    android:layout_gravity="center"
+                    android:visibility="gone"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/Tarea_No_Finalizada_Item"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="#E74C3C"
+                    android:layout_marginStart="5dp"
+                    android:visibility="gone"/>
+
+                <!--Estado de la nota-->
+                <TextView
+                    android:id="@+id/Estado_Item"
+                    android:text="@string/Estado_Item"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/opensansbold"
+                    android:layout_marginStart="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
