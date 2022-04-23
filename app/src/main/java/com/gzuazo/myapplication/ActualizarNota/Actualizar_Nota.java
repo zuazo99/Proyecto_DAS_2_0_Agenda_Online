@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 import com.gzuazo.myapplication.R;
 
-public class Actualizar_Nota extends AppCompatActivity {
+public class Actualizar_Nota extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     TextView id_nota_act, uid_usuario_act, correo_usuario_act, fecha_hora_registro_act, fecha_act, estado_act, estado_nuevo;
     EditText titulo_nota_act, descripcion_act;
@@ -92,5 +93,21 @@ public class Actualizar_Nota extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerEstado.setAdapter(adapter);
+        spinnerEstado.setOnItemSelectedListener(this);
+    }
+
+
+    /*
+        Estos dos metodos nos sirven para poder seleccionar las opciones del spinner y obtener el valor seleccionado
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String estado_seleccionado = adapterView.getItemAtPosition(i).toString();
+        estado_nuevo.setText(estado_seleccionado);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
