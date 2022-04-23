@@ -2,9 +2,12 @@ package com.gzuazo.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,11 +33,12 @@ import com.gzuazo.myapplication.Perfil.Perfil_Usuario;
 public class MenuPrincipal extends AppCompatActivity {
 
     TextView nombresPrincipal, correoPrincipal, idPrincipal;
-    Button btnCerrarSesion, btnAgregarNota, btnMisNotas, btnArchivar, btnPerfil, btnAcercaDe;
+    Button btnCerrarSesion, btnAgregarNota, btnMisNotas, btnArchivar, btnPerfil, btnAcercaDe, btnEstadoCuenta;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     ProgressBar progressBarDatos;
-    LinearLayoutCompat linearNombres, linearCorreo;
+    ProgressDialog progressDialog;
+    LinearLayoutCompat linearNombres, linearCorreo, linearVerificacion;
 
     DatabaseReference usuarios; // Para leer o escribir en la base de datos
 
@@ -50,6 +56,18 @@ public class MenuPrincipal extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
 
+
+        btnEstadoCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (user.isEmailVerified()){
+                    // si la cuenta esta verificada
+                    Toast.makeText(MenuPrincipal.this, "Cuenta verificada", Toast.LENGTH_SHORT).show();
+                }else {
+                    verificarCuentaCorreo();
+                }
+            }
+        });
 
         btnAgregarNota.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +117,57 @@ public class MenuPrincipal extends AppCompatActivity {
         });
     }
 
+    private void verificarCuentaCorreo() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Verificar Cuenta");
+        builder.setMessage("¿Estas seguro de enviar instrucciones de verificacion a su correo electronico? "
+        + user.getEmail())
+        .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                enviarVerificacion();
+            }
+        }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MenuPrincipal.this, "Cancelado por el usuario", Toast.LENGTH_SHORT).show();
+            }
+        }).show();
+
+    }
+
+    private void enviarVerificacion() {
+        progressDialog.setMessage("Enviando las instrucciones de verificacion a su correo electronico "+
+                user.getEmail());
+        progressDialog.show();
+        user.sendEmailVerification()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        // Envio exitoso
+                        progressDialog.dismiss();
+                        Toast.makeText(MenuPrincipal.this, "Instrucciones enviadas...mire su bandeja de entrada " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MenuPrincipal.this, "Error --> " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void checkEstadoCuenta(){
+        String Verificado = "Verificado";
+        String No_Verificado = "No Verificado";
+
+        if (user.isEmailVerified()){
+            btnEstadoCuenta.setText(Verificado);
+        }else{
+            btnEstadoCuenta.setText(No_Verificado);
+        }
+    }
+
     @Override
     protected void onStart() {
         validateInicioSesion();
@@ -117,6 +186,8 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     private void cargarDatos(){
+
+        checkEstadoCuenta();
         usuarios.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) { // Nos permite leer a tiempo real los datos de ese usuario
@@ -130,6 +201,7 @@ public class MenuPrincipal extends AppCompatActivity {
 //                    correoPrincipal.setVisibility(View.VISIBLE);
                     linearNombres.setVisibility(View.VISIBLE);
                     linearCorreo.setVisibility(View.VISIBLE);
+                    linearVerificacion.setVisibility(View.VISIBLE);
 
                     // Obtener datos
                     String uid = "" + snapshot.child("uid").getValue();
@@ -181,5 +253,10 @@ public class MenuPrincipal extends AppCompatActivity {
         progressBarDatos = findViewById(R.id.progressBarDatos);
         linearNombres = findViewById(R.id.Linear_Nombre);
         linearCorreo = findViewById(R.id.Linear_Correo);
+        linearVerificacion = findViewById(R.id.Linear_Verificar);
+        btnEstadoCuenta = findViewById(R.id.EstadoCuentaPrincipal);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Espere por favor...");
+        progressDialog.setCanceledOnTouchOutside(false);
     }
 }

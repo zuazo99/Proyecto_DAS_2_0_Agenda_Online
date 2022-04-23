@@ -15,7 +15,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="180dp"
             app:cardBackgroundColor="@color/purple_200"
             app:cardUseCompatPadding="true"
             android:padding="0.2dp"
@@ -126,9 +126,9 @@
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <!--CORREO y ICONO-->
+                    <!--Verificacion-->
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/Linear_Correo"
+                        android:id="@+id/Linear_Verificar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -138,13 +138,13 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/correo_menu_principal"
+                            android:src="@drawable/verificacion_menu_principal"
                             android:layout_gravity="center"/>
 
-                        <!--Correo-->
-                        <TextView
-                            android:id="@+id/CorreoPrincipal"
-                            android:text="@string/CorreoPrincipal"
+                        <!--Estado-->
+                        <Button
+                            android:id="@+id/EstadoCuentaPrincipal"
+                            android:text="@string/EstadoCuentaPrincipal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#FFF"

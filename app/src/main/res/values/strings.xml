@@ -36,6 +36,7 @@
     <string name="NombresPrincipal"> -- </string>
     <string name="CorreoPrincipal"> -- </string>
     <string name="IDPrincipal"> -- </string>
+    <string name="EstadoCuentaPrincipal">No verificado</string>
     <string name="tituloMenuPrincipalActionBar">Agenda Online</string>
 
     <string name="AgregarNota">Agregar</string>
