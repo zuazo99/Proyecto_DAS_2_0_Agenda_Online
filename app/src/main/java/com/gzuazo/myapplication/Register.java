@@ -130,11 +130,20 @@ public class Register extends AppCompatActivity {
         //Obtener la identificacion del usuario actual
         String uid = firebaseAuth.getUid();
 
+        // Datos importantes
         HashMap<String, String> datos = new HashMap<>();
         datos.put("uid", uid);
         datos.put("correo", correo);
         datos.put("nombre", nombre);
         datos.put("password", password);
+
+        // Datos opcionales
+
+        datos.put("apellidos", "");
+        datos.put("edad", "");
+        datos.put("telefono", "");
+        datos.put("domicilio", "");
+        datos.put("imagen_perfil", "");
 
         // Obtenemos la referencia de la base de datos
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Usuarios");

@@ -285,8 +285,8 @@
                         android:src="@drawable/perfil"/>
 
                     <Button
-                        android:id="@+id/Perfil"
-                        android:text="@string/Perfil"
+                        android:id="@+id/Contactos"
+                        android:text="@string/Contactos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"

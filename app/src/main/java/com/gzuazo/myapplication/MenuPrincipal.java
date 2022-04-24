@@ -9,7 +9,11 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -33,7 +37,7 @@ import com.gzuazo.myapplication.Perfil.Perfil_Usuario;
 public class MenuPrincipal extends AppCompatActivity {
 
     TextView nombresPrincipal, correoPrincipal, idPrincipal;
-    Button btnCerrarSesion, btnAgregarNota, btnMisNotas, btnArchivar, btnPerfil, btnAcercaDe, btnEstadoCuenta;
+    Button btnCerrarSesion, btnAgregarNota, btnMisNotas, btnArchivar, btnContacto, btnAcercaDe, btnEstadoCuenta;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     ProgressBar progressBarDatos;
@@ -95,7 +99,7 @@ public class MenuPrincipal extends AppCompatActivity {
             }
         });
 
-        btnPerfil.setOnClickListener(new View.OnClickListener() {
+        btnContacto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
@@ -163,6 +167,7 @@ public class MenuPrincipal extends AppCompatActivity {
 
         if (user.isEmailVerified()){
             btnEstadoCuenta.setText(Verificado);
+            btnEstadoCuenta.setBackgroundColor(Color.rgb(46, 134, 193));
         }else{
             btnEstadoCuenta.setText(No_Verificado);
         }
@@ -219,7 +224,7 @@ public class MenuPrincipal extends AppCompatActivity {
                     btnAgregarNota.setEnabled(true);
                     btnMisNotas.setEnabled(true);
                     btnArchivar.setEnabled(true);
-                    btnPerfil.setEnabled(true);
+                    btnContacto.setEnabled(true);
                     btnAcercaDe.setEnabled(true);
                     btnCerrarSesion.setEnabled(true);
 
@@ -231,6 +236,25 @@ public class MenuPrincipal extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_principal, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.Perfil_Usuario:
+                startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -249,7 +273,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnAgregarNota = findViewById(R.id.AgregarNota);
         btnArchivar = findViewById(R.id.ArchivarNotas);
         btnMisNotas = findViewById(R.id.ListarNotas);
-        btnPerfil = findViewById(R.id.Perfil);
+        btnContacto = findViewById(R.id.Contactos);
         progressBarDatos = findViewById(R.id.progressBarDatos);
         linearNombres = findViewById(R.id.Linear_Nombre);
         linearCorreo = findViewById(R.id.Linear_Correo);

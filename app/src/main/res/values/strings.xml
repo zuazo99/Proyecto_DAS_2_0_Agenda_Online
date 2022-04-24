@@ -42,7 +42,7 @@
     <string name="AgregarNota">Agregar</string>
     <string name="ListarNotas">Mis Notas</string>
     <string name="ArchivarNotas">Archivados</string>
-    <string name="Perfil">Perfil</string>
+    <string name="Contactos">Contactos</string>
     <string name="AcercaDe">Acerca de</string>
     <string name="CerrarSesion">Cerrar Sesion</string>
     <!--LOGIN-->
@@ -73,6 +73,7 @@
     <!--MENU ACTIONBAR-->
     <string name="AgregarNota_BD">Añadir</string>
     <string name="ActualizarNota_BD">Actualizar</string>
+    <string name="Perfil_Usuario">Mi Perfil</string>
 
     <!--ITEM Nota-->
     <string name="Id_Nota_Item">Id nota</string>
@@ -116,6 +117,14 @@
         <item>"Finalizado"</item>
     </string-array>
 
-
+    <!--PERFIL USUARIO-->
+    <string name="Uid_perfil">Uid</string>
+    <string name="Nombre_Perfil">Nombre</string>
+    <string name="Apellidos_Perfil">Mis apellidos</string>
+    <string name="Correo_Perfil">Correo electronico</string>
+    <string name="Edad_Perfil">Edad</string>
+    <string name="Telefono_Perfil">Telefono</string>
+    <string name="Domicilio_Perfil">Domicilio</string>
+    <string name="GuardarDatos_Perfil">Guardar Datos</string>
 
 </resources>
