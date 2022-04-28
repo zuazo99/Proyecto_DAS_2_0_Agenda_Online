@@ -42,8 +42,71 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
+            <!--Correo-->
+            <TextView
+                android:id="@+id/Correo_Perfil"
+                android:text="@string/Correo_Perfil"
+                android:textSize="25dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/opensansmedium"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <!--UID-->
+            <TextView
+                android:id="@+id/Uid_perfil"
+                android:text="@string/Uid_perfil"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/icono_perfil_usuario"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/opensansmedium"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <!--NOMBRE-->
+            <EditText
+                android:id="@+id/Nombre_Perfil"
+                android:hint="@string/Nombre_Perfil"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/opensansmedium"
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!--Apelllidos-->
+            <EditText
+                android:id="@+id/Apellidos_Perfil"
+                android:hint="@string/Apellidos_Perfil"
+                android:inputType="textPersonName"
+                android:fontFamily="@font/opensansmedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!--EDAD-->
+            <EditText
+                android:id="@+id/Edad_Perfil"
+                android:hint="@string/Edad_Perfil"
+                android:inputType="number"
+                android:fontFamily="@font/opensansmedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!--Telefono-->
+            <EditText
+                android:id="@+id/Telefono_Perfil"
+                android:hint="@string/Telefono_Perfil"
+                android:inputType="phone"
+                android:fontFamily="@font/opensansmedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!--Domicilio-->
+            <EditText
+                android:id="@+id/Domicilio_Perfil"
+                android:hint="@string/Domicilio_Perfil"
+                android:inputType="text"
+                android:fontFamily="@font/opensansmedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
