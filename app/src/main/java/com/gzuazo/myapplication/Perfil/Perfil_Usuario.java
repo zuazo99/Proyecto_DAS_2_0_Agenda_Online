@@ -1,6 +1,7 @@
 package com.gzuazo.myapplication.Perfil;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -48,6 +49,14 @@ public class Perfil_Usuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle("Perfil de Usuario");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+
         inicializarViews();
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -96,7 +105,7 @@ public class Perfil_Usuario extends AppCompatActivity {
                     String correo = ""+snapshot.child("correo").getValue();
                     String domicilio = ""+snapshot.child("domicilio").getValue();
                     String edad = ""+snapshot.child("edad").getValue();
-                    String fecha_nacimiento = ""+ snapshot.child("fecha_nacimiento").getValue();
+                    String fecha_nacimiento = ""+ snapshot.child("fecha_de_nacimiento").getValue();
                     String imagen_perfil =  ""+snapshot.child("imagen_perfil").getValue();
 
                     // Settear los datos
@@ -214,5 +223,11 @@ public class Perfil_Usuario extends AppCompatActivity {
         validarInicioSesion();
         super.onStart();
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
     }
 }
