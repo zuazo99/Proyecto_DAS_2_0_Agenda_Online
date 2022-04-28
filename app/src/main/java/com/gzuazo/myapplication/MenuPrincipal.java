@@ -102,7 +102,7 @@ public class MenuPrincipal extends AppCompatActivity {
         btnContacto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
+               // startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
             }
         });
 
@@ -248,12 +248,9 @@ public class MenuPrincipal extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()) {
-            case R.id.Perfil_Usuario:
-                startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
-                break;
+        if (item.getItemId() == R.id.Perfil_Usuario){
+            startActivity(new Intent(MenuPrincipal.this, Perfil_Usuario.class));
         }
-
         return super.onOptionsItemSelected(item);
     }
 

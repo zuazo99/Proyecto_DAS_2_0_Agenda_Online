@@ -25,6 +25,7 @@
 
             <!--IMAGEN_PERFIL-->
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imagen_perfil"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:background="#7777"
@@ -41,7 +42,8 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
             <!--Correo-->
             <TextView
                 android:id="@+id/Correo_Perfil"
@@ -106,6 +108,14 @@
                 android:inputType="text"
                 android:fontFamily="@font/opensansmedium"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <!--Guardar Datos-->
+            <Button
+                android:id="@+id/GuardarDatos_Perfil"
+                android:text="@string/GuardarDatos_Perfil"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
