@@ -109,6 +109,30 @@
                 android:fontFamily="@font/opensansmedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/FechaNacimiento"
+                    android:text="@string/FechaNacimiento"
+                    android:fontFamily="@font/opensansmedium"
+                    android:layout_gravity="center"
+                    android:textSize="18dp"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/Editar_Fecha"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/calendario"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
             <!--Guardar Datos-->
             <Button
                 android:id="@+id/GuardarDatos_Perfil"

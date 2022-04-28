@@ -13,6 +13,7 @@
     <string name="ConfirmarContraseñaET">Confirmar Contraseña</string>
     <string name="RegistrarUsuario">Registrar</string>
     <string name="TengoUnaCuentaTXT">Tengo una cuenta</string>
+    <string name="FechaNacimiento">Fecha de Nacimiento</string>
 
 
     <!--REGISTER.java ACTIVITY-->

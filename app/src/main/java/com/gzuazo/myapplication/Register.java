@@ -135,7 +135,7 @@ public class Register extends AppCompatActivity {
         datos.put("uid", uid);
         datos.put("correo", correo);
         datos.put("nombre", nombre);
-        datos.put("password", password);
+        //datos.put("password", password);
 
         // Datos opcionales
 
@@ -143,6 +143,7 @@ public class Register extends AppCompatActivity {
         datos.put("edad", "");
         datos.put("telefono", "");
         datos.put("domicilio", "");
+        datos.put("fecha_de_nacimiento", "");
         datos.put("imagen_perfil", "");
 
         // Obtenemos la referencia de la base de datos
