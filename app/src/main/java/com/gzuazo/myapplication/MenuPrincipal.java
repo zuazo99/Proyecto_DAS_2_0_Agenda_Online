@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,8 +21,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,10 +32,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.gzuazo.myapplication.AgregarNota.AgregarNota;
 import com.gzuazo.myapplication.ListarNotas.ListarNotas;
 import com.gzuazo.myapplication.NotasArchivadas.NotasArchivadas;
 import com.gzuazo.myapplication.Perfil.Perfil_Usuario;
+import com.gzuazo.myapplication.notificacion.PushNotificationService;
 
 public class MenuPrincipal extends AppCompatActivity {
 
@@ -45,6 +50,8 @@ public class MenuPrincipal extends AppCompatActivity {
     LinearLayoutCompat linearNombres, linearCorreo, linearVerificacion;
 
     DatabaseReference usuarios; // Para leer o escribir en la base de datos
+
+    PushNotificationService notificacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -236,8 +243,24 @@ public class MenuPrincipal extends AppCompatActivity {
 
             }
         });
+        getTokenFCM();
     }
+    private void getTokenFCM(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if(!task.isSuccessful()){
+                            Toast.makeText(MenuPrincipal.this, "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
+                        String token = task.getResult();
+                        System.out.println("TOKEN--> "+ token);
+                        Toast.makeText(MenuPrincipal.this, "TOKEN --> " + token, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
