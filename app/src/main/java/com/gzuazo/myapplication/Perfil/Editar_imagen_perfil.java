@@ -7,12 +7,17 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -112,16 +117,25 @@ public class Editar_imagen_perfil extends AppCompatActivity {
         btnGaleria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Editar_imagen_perfil.this, "Elegir de galería", Toast.LENGTH_SHORT).show();
-                seleccionImagenGaleria();
-                dialog_elegir_imagen.dismiss();
+                //Toast.makeText(Editar_imagen_perfil.this, "Elegir de galería", Toast.LENGTH_SHORT).show();
+                //seleccionImagenGaleria();
+                if (ContextCompat.checkSelfPermission(Editar_imagen_perfil.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    seleccionImagenGaleria();
+                    dialog_elegir_imagen.dismiss();
+                }else{
+                    solicitudPermisosGaleria.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    dialog_elegir_imagen.dismiss();
+                }
+
             }
         });
 
         btnCamara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Editar_imagen_perfil.this, "Elegir de cámara", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Editar_imagen_perfil.this, "Elegir de cámara", Toast.LENGTH_SHORT).show();
+                seleccionarImagenCamara();
                 dialog_elegir_imagen.dismiss();
             }
         });
@@ -129,6 +143,8 @@ public class Editar_imagen_perfil extends AppCompatActivity {
         dialog_elegir_imagen.show();
         dialog_elegir_imagen.setCanceledOnTouchOutside(true);
     }
+
+
 
     private void seleccionImagenGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -151,6 +167,44 @@ public class Editar_imagen_perfil extends AppCompatActivity {
                         imagenPerfilAct.setImageURI(imagenUri);
                     }else {
                         Toast.makeText(Editar_imagen_perfil.this, "Cancelado por el Usuario", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
+
+    /* Permiso para acceder a la galeria*/
+    private ActivityResultLauncher<String> solicitudPermisosGaleria =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted->{
+                if(isGranted){
+                    // isGranted --> Es concedido el permiso
+                    seleccionImagenGaleria();
+                }else {
+                    Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+    private void seleccionarImagenCamara() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, "Nueva imagen");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "Descripcion de imagen");
+        // Estamos creando el image URI
+        imagenUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imagenUri);
+        camaraActivityResultLauncher.launch(intent);
+    }
+
+    private ActivityResultLauncher<Intent> camaraActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        imagenPerfilAct.setImageURI(imagenUri);
+                    }else{
+                        Toast.makeText(Editar_imagen_perfil.this, "Cancelado por el Usuario", Toast.LENGTH_SHORT).show();
+
                     }
                 }
             }
