@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,6 +25,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +35,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gzuazo.myapplication.R;
+
+import java.util.HashMap;
 
 public class Editar_imagen_perfil extends AppCompatActivity {
 
@@ -44,6 +53,8 @@ public class Editar_imagen_perfil extends AppCompatActivity {
     Dialog dialog_elegir_imagen;
 
     Uri imagenUri = null;
+
+    ProgressDialog progressDialog;
     
 
     @Override
@@ -73,10 +84,17 @@ public class Editar_imagen_perfil extends AppCompatActivity {
         btn_ActualizarImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (imagenUri == null){
+                    Toast.makeText(Editar_imagen_perfil.this, "Inserte una nueva imagen", Toast.LENGTH_SHORT).show();
+                }else {
+                    subirImagenStorage();
+                }
             }
         });
 
+        progressDialog = new ProgressDialog(Editar_imagen_perfil.this);
+        progressDialog.setTitle("Espere por favor...");
+        progressDialog.setCanceledOnTouchOutside(false);
         lecturaImagen();
     }
 
@@ -104,6 +122,58 @@ public class Editar_imagen_perfil extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+
+    private void subirImagenStorage(){
+        progressDialog.setMessage("Subiendo imagen...");
+        progressDialog.show();
+        String carpetaImagenes = "ImagenesPerfil/"; // Aqui almacenamos todas las imagenes de los usuarios
+        String nombreImagen = carpetaImagenes+firebaseAuth.getUid();
+
+        StorageReference reference = FirebaseStorage.getInstance().getReference(nombreImagen);
+        reference.putFile(imagenUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                        while (!uriTask.isSuccessful());
+                        String uriImagen = ""+uriTask.getResult(); // Obtenemos la uri que se ha subido al Storage
+                        // Enviamos la uri a la base de datos
+                        updateImagenBD(uriImagen);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Editar_imagen_perfil.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateImagenBD(String uriImagen) {
+        progressDialog.setMessage("Actualizando la imagen");
+        progressDialog.show();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        if (imagenUri != null){
+            hashMap.put("imagen_perfil", ""+uriImagen);
+        }
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Usuarios");
+        databaseReference.child(user.getUid())
+                .updateChildren(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        progressDialog.dismiss();
+                        Toast.makeText(Editar_imagen_perfil.this, "Imagen se ha actualizado con éxito", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Editar_imagen_perfil.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
