@@ -1,10 +1,17 @@
 package com.gzuazo.myapplication.Perfil;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +37,9 @@ public class Editar_imagen_perfil extends AppCompatActivity {
     FirebaseUser user;
 
     Dialog dialog_elegir_imagen;
+
+    Uri imagenUri = null;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +113,7 @@ public class Editar_imagen_perfil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(Editar_imagen_perfil.this, "Elegir de galería", Toast.LENGTH_SHORT).show();
+                seleccionImagenGaleria();
                 dialog_elegir_imagen.dismiss();
             }
         });
@@ -118,6 +129,32 @@ public class Editar_imagen_perfil extends AppCompatActivity {
         dialog_elegir_imagen.show();
         dialog_elegir_imagen.setCanceledOnTouchOutside(true);
     }
+
+    private void seleccionImagenGaleria() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        galeriaActivityResultLauncher.launch(intent);
+    }
+
+    private ActivityResultLauncher<Intent> galeriaActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    // Gestionamos el resultado de nuestro intent
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        // Obtener URI de la imagen
+                        Intent data = result.getData();
+                        imagenUri = data.getData();
+
+                        // Settear l aimagen seleccionada
+                        imagenPerfilAct.setImageURI(imagenUri);
+                    }else {
+                        Toast.makeText(Editar_imagen_perfil.this, "Cancelado por el Usuario", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
 
     @Override
     public boolean onSupportNavigateUp() {
