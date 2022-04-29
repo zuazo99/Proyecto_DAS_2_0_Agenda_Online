@@ -34,7 +34,7 @@ import java.util.HashMap;
 
 public class Perfil_Usuario extends AppCompatActivity {
 
-    ImageView imagen_perfil, editar_Fecha;
+    ImageView imagen_perfil, editar_Fecha, editar_Imagen;
     TextView correo_Perfil, uid_Perfil, fecha_Nacimiento;
     EditText nombre_Perfil, apellidos_Perfil, edad_Perfil, telefono_Perfil, domicilio_Perfil;
     Button btn_Save;
@@ -75,6 +75,13 @@ public class Perfil_Usuario extends AppCompatActivity {
                 updatePerfil();
             }
         });
+
+        editar_Imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void inicializarViews() {
@@ -89,6 +96,7 @@ public class Perfil_Usuario extends AppCompatActivity {
         btn_Save = findViewById(R.id.GuardarDatos_Perfil);
         editar_Fecha = findViewById(R.id.Editar_Fecha);
         fecha_Nacimiento = findViewById(R.id.FechaNacimiento);
+        editar_Imagen = findViewById(R.id.Editar_imagen);
     }
 
     private void lecturaDatos(){

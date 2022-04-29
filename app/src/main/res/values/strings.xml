@@ -128,4 +128,8 @@
     <string name="Domicilio_Perfil">Domicilio</string>
     <string name="GuardarDatos_Perfil">Guardar Datos</string>
 
+    <!-- Perfil Usuario (Imagen de Perfil)-->
+    <string name="btnElegirImagen">Elegir imagen de</string>
+    <string name="btnActualizarImagen">Actualizar Imagen</string>
+
 </resources>

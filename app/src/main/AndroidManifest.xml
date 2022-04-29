@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto_DAS_2_0_Agenda_Online">
         <activity
+            android:name=".Perfil.Editar_imagen_perfil"
+            android:exported="false" />
+        <activity
             android:name=".ActualizarNota.Actualizar_Nota"
             android:exported="false" />
         <activity
