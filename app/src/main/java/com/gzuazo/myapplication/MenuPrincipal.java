@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,10 +22,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,12 +43,17 @@ import com.gzuazo.myapplication.NotasArchivadas.NotasArchivadas;
 import com.gzuazo.myapplication.Perfil.Perfil_Usuario;
 import com.gzuazo.myapplication.notificacion.PushNotificationService;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class MenuPrincipal extends AppCompatActivity {
 
     TextView nombresPrincipal, correoPrincipal, idPrincipal;
     Button btnCerrarSesion, btnAgregarNota, btnMisNotas, btnArchivar, btnContacto, btnAcercaDe, btnEstadoCuenta;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
+    FirebaseAnalytics mFirebaseAnalytics;
     ProgressBar progressBarDatos;
     ProgressDialog progressDialog;
     LinearLayoutCompat linearNombres, linearCorreo, linearVerificacion;
@@ -52,6 +61,8 @@ public class MenuPrincipal extends AppCompatActivity {
     DatabaseReference usuarios; // Para leer o escribir en la base de datos
 
     PushNotificationService notificacion;
+
+    String direccion = "http://http://ec2-52-56-170-196.eu-west-2.compute.amazonaws.com/gzuazo004/WEB/notify.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +77,7 @@ public class MenuPrincipal extends AppCompatActivity {
         usuarios = FirebaseDatabase.getInstance().getReference("Usuarios");
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         btnEstadoCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,6 +272,8 @@ public class MenuPrincipal extends AppCompatActivity {
                     }
                 });
     }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -302,5 +315,16 @@ public class MenuPrincipal extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Espere por favor...");
         progressDialog.setCanceledOnTouchOutside(false);
+    }
+
+    private void httpConnection(){
+        HttpURLConnection urlConnection = null;
+        try {
+            URL destino = new URL(direccion);
+            urlConnection = (HttpURLConnection) destino.openConnection();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

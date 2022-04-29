@@ -15,7 +15,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/icono_agenda_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Proyecto_DAS_2_0_Agenda_Online">
+        android:theme="@style/Theme.Proyecto_DAS_2_0_Agenda_Online"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".Perfil.Editar_imagen_perfil"
             android:exported="false" />
