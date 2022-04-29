@@ -135,8 +135,16 @@ public class Editar_imagen_perfil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(Editar_imagen_perfil.this, "Elegir de cámara", Toast.LENGTH_SHORT).show();
-                seleccionarImagenCamara();
-                dialog_elegir_imagen.dismiss();
+               // seleccionarImagenCamara();
+               // dialog_elegir_imagen.dismiss();
+                if (ContextCompat.checkSelfPermission(Editar_imagen_perfil.this,
+                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                    seleccionarImagenCamara();
+                    dialog_elegir_imagen.dismiss();
+                }else {
+                    solicitudPermisosCamara.launch(Manifest.permission.CAMERA);
+                    dialog_elegir_imagen.dismiss();
+                }
             }
         });
 
@@ -209,6 +217,16 @@ public class Editar_imagen_perfil extends AppCompatActivity {
                 }
             }
     );
+
+    /* Permiso para acceder a la camara*/
+    private ActivityResultLauncher<String> solicitudPermisosCamara =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted->{
+                if (isGranted){
+                    seleccionarImagenCamara();
+                }else {
+                    Toast.makeText(this, "Permiso denegado.", Toast.LENGTH_SHORT).show();
+                }
+            });
 
     @Override
     public boolean onSupportNavigateUp() {
