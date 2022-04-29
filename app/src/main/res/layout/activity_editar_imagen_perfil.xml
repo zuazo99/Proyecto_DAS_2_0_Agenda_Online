@@ -24,7 +24,7 @@
         <Button
             android:id="@+id/btnElegirImagen"
             android:text="@string/btnElegirImagen"
-            android:layout_width="230dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/opensansbold"
@@ -33,7 +33,7 @@
         <Button
             android:id="@+id/btnActualizarImagen"
             android:text="@string/btnActualizarImagen"
-            android:layout_width="230dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/opensansbold"

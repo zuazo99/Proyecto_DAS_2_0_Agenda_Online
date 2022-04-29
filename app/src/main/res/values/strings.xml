@@ -98,6 +98,15 @@
     <string name="notaEliminadaAlertDialog">Nota eliminada</string>
     <string name="alertDialogBorrarcancelado">Cancelado el borrado de la nota</string>
 
+    <!--CUADRO DE DIÁLOGO - ELEGIR IMAGEN DE-->
+
+
+    <string name="ElegirImagenTXT">Elegir imagen de:</string>
+
+    <string name="Btn_Elegir_Galeria">Galería</string>
+
+    <string name="Btn_Elegir_Camara">Cámara</string>
+
     <!--Actualizar Nota-->
     <string name="actionBarTitleActualizar">Actualizar Nota</string>
     <string name="Id_nota_Actualizar">Id nota</string>

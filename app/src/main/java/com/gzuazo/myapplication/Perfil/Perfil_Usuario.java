@@ -79,7 +79,7 @@ public class Perfil_Usuario extends AppCompatActivity {
         editar_Imagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(Perfil_Usuario.this, Editar_imagen_perfil.class));
             }
         });
     }
